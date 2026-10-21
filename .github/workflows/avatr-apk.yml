@@ -1,0 +1,42 @@
+name: Build Avatr APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools platforms;android-37.0 build-tools;36.0.0 ndk;28.2.13676358
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Assemble source-only debug APK
+        run: ./gradlew :mobile:assembleDebug --stacktrace
+
+      - name: Collect APK
+        run: |
+          mkdir -p out
+          find . -name '*.apk' -path '*/build/outputs/*' -exec cp -v {} out/ \;
+          ls -la out/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DiPlay-Avatr-APK
+          path: out/*.apk
+          if-no-files-found: error
