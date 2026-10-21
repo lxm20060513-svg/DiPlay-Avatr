@@ -21,6 +21,12 @@
 
 [Download & website](https://shihabal3amri.github.io/DiPlay/) · [Release](https://github.com/shihabal3amri/DiPlay/releases/tag/v0.2.21) · [Report a problem](https://github.com/shihabal3amri/DiPlay/issues/new/choose)
 
+> **Builds / 构建说明：** CI in this public repository produces *source-only* APKs, exactly like upstream:
+> no accessory identity is bundled, so a standalone CarPlay session will fail. An AVATR build with the
+> offline MFi assets injected exists only for personal car testing and is not published here.
+> 本公开仓库的 CI 只出「源码版」APK（与上游一致，不含配件身份，独立建立 CarPlay 会话会失败）；
+> 注入离线 MFi 认证资产的阿维塔定制包仅作个人车载测试，不在本仓库发布。
+
 ![DiPlay home](site/assets/home.png)
 
 ## 0.2.21 — public preview
