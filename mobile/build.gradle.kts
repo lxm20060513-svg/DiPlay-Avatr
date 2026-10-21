@@ -14,11 +14,12 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.shihab.diplay"
+        // 阿维塔定制版：应用 ID 与上游区分，可与官方 com.shihab.diplay 并存。
+        applicationId = "com.avatr.diplay"
         minSdk = 24
         targetSdk = 37
         versionCode = 40
-        versionName = "0.2.21"
+        versionName = "0.2.21-avatr"
 
     }
 
@@ -39,8 +40,8 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix = ".hudtest"
-            versionNameSuffix = "-hud-test"
+            // 阿维塔定制包：不再附加 .hudtest，最终包名就是 com.avatr.diplay
+            versionNameSuffix = "-debug"
         }
         release {
             optimization {

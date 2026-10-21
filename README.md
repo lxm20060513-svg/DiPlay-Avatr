@@ -2,18 +2,20 @@
 
 > **Unofficial modification notice / 非官方修改版说明**
 > This repository is a fork of [shihabal3amri/DiPlay](https://github.com/shihabal3amri/DiPlay) (GPL-3.0).
-> Changes made here are limited to branding: the default car icon shown in CarPlay's "back to car"
-> button is replaced with the AVATR (阿维塔) mark, and the default car label is `AVATR` instead of `BYD`.
+> Changes made here are limited to branding and packaging: the default car icon shown in CarPlay's "back to car"
+> button is replaced with the AVATR (阿维塔) mark, the default car label is `AVATR` instead of `BYD`,
+> and the application ID is `com.avatr.diplay` (upstream: `com.shihab.diplay`, so both can coexist).
 > No protocol, transport or authentication code was modified. Original author and licences are kept
 > unchanged; see [LICENSE](LICENSE) and `docs/licenses`. Not affiliated with Apple, BYD or AVATR.
 >
-> 本仓库是 DiPlay 的非官方修改版（GPL-3.0）。改动只有品牌层面：CarPlay「返回车辆」按钮的默认车标
-> 由比亚迪替换为阿维塔，默认车名标签由 `BYD` 改为 `AVATR`；未改动任何协议/传输/认证代码。
+> 本仓库是 DiPlay 的非官方修改版（GPL-3.0）。改动只有品牌与打包标识层面：CarPlay「返回车辆」按钮的默认车标
+> 由比亚迪替换为阿维塔，默认车名标签由 `BYD` 改为 `AVATR`，应用 ID 改为 `com.avatr.diplay`
+> （上游 `com.shihab.diplay`，因此可与官方版共存）；未改动任何协议/传输/认证代码。
 > 与原项目无隶属关系，也未获 Apple / 比亚迪 / 阿维塔 背书。
 
 [English](README.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md)
 
-**CarPlay for compatible BYD Android head units.** Wired and wireless, with the familiar DiAuto interface. Independent app: `com.shihab.diplay`.
+**CarPlay for compatible BYD Android head units.** Wired and wireless, with the familiar DiAuto interface. This Avatr edition installs as `com.avatr.diplay`, alongside the official `com.shihab.diplay`.
 
 > **BYD support scope:** These projects focus on BYD cars. They may work on other brands, but other brands are unsupported and there are no plans to add support or fix brand-specific incompatibilities.
 
