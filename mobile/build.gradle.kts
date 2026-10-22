@@ -19,7 +19,7 @@ android {
         minSdk = 24
         targetSdk = 37
         versionCode = 40
-        versionName = "0.2.21-avatr"
+        versionName = "0.2.24-avatr"
 
     }
 

@@ -17,6 +17,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Rect
+import android.graphics.drawable.ColorDrawable
 import android.graphics.RectF
 import android.graphics.RenderEffect
 import android.graphics.Shader
@@ -1749,7 +1750,6 @@ class CarPlayHostActivity : ComponentActivity() {
         if (hasFocus) {
             refreshConfiguration(source = ThemeModeDiagnostics.Source.WINDOW_FOCUS)
             applyFullscreenMode()
-            onClusterLaunchTick()
         }
     }
 
@@ -1775,8 +1775,6 @@ class CarPlayHostActivity : ComponentActivity() {
         logThemeState(ThemeModeDiagnostics.Source.STOP, resources.configuration)
         mainHandler.removeCallbacks(pollConfiguration)
         super.onStop()
-        // Off screen there are no system bars to hide, so a launch waiting for focus can go now.
-        onClusterLaunchTick()
         if (!isFinishing && !isChangingConfigurations) {
             CenterMapOverlay.scheduleShow()
             LauncherBubble.scheduleShow()
@@ -2716,6 +2714,7 @@ class CarPlayHostActivity : ComponentActivity() {
         val nextNight = resolveAppNightNow(darkMode)
         if (nextNight == appNight) return
         appNight = nextNight
+        applySystemBarChrome()
         paintWaitingScreen()
 
         settingsMenu?.let { previous ->
@@ -6659,6 +6658,22 @@ class CarPlayHostActivity : ComponentActivity() {
         }
         controller.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        applySystemBarChrome()
+    }
+
+    /** Painted system bars follow the app palette instead of the platform's plain black. */
+    private fun applySystemBarChrome() {
+        val palette = DiPlayPalette.of(appNight)
+        // API 35+ ignores statusBarColor/navigationBarColor (enforced edge-to-edge), so the bar
+        // area reveals the window background. Paint it with the same chrome colour to keep the
+        // bars seamless with the interface; the content root still covers the canvas itself.
+        window.setBackgroundDrawable(ColorDrawable(palette.systemBar))
+        window.statusBarColor = palette.systemBar
+        window.navigationBarColor = palette.systemBar
+        WindowInsetsControllerCompat(window, window.decorView).apply {
+            isAppearanceLightStatusBars = palette.systemBarIconsAreDark
+            isAppearanceLightNavigationBars = palette.systemBarIconsAreDark
+        }
     }
 
     /** Temporary reveal without persisting bar visibility or changing AirPlay's negotiated size. */
