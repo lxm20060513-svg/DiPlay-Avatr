@@ -16,10 +16,10 @@ import kotlin.math.roundToInt
  */
 object InterfaceSize {
     const val AUTO = 0
-    val CHOICES = listOf(AUTO, 100, 125, 150, 200)
+    val CHOICES = listOf(AUTO, 80, 90, 100, 125, 150, 200)
 
     // Auto scales up until the shorter side is this wide; screens already narrower stay at 100%.
-    private const val AUTO_SMALLEST_WIDTH_DP = 720
+    private const val AUTO_SMALLEST_WIDTH_DP = 1080
     private const val PREFS = "diplay"
     private const val KEY = "interface_size"
 

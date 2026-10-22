@@ -61,7 +61,7 @@ object SettingsWidgets {
     }
 
     /**
-     * Replaces the platform switch (about a 36x14dp track) with a 60x34dp track and a 28dp thumb,
+     * Replaces the platform switch (about a 36x14dp track) with a 48x26dp track and a 22dp thumb,
      * so the state reads at arm's length on a head unit.
      */
     fun applyLargeSwitchStyle(switch: Switch, thumbOn: Int, thumbOff: Int, trackOn: Int, trackOff: Int) {
@@ -72,19 +72,19 @@ object SettingsWidgets {
         switch.thumbDrawable = InsetDrawable(
             GradientDrawable().apply {
                 shape = GradientDrawable.OVAL
-                setSize(px(28), px(28))
+                setSize(px(22), px(22))
                 setColor(Color.WHITE)
             },
             thumbInset,
         )
         switch.trackDrawable = GradientDrawable().apply {
-            cornerRadius = px(17).toFloat()
-            setSize(px(60), px(34))
+            cornerRadius = px(13).toFloat()
+            setSize(px(48), px(26))
             setColor(Color.WHITE)
             // Same 30% track as the platform switch, so the colours match the smaller switches.
             alpha = (0.3f * 255).roundToInt()
         }
-        switch.switchMinWidth = px(60)
+        switch.switchMinWidth = px(48)
         switch.showText = false
         switch.thumbTintList = switchStates(thumbOn, thumbOff)
         switch.trackTintList = switchStates(trackOn, trackOff)
@@ -107,7 +107,7 @@ object SettingsWidgets {
         theme: SettingsTheme = SettingsTheme.OVERLAY,
         contentDescription: String = label,
         enabled: Boolean = true,
-        labelSizeSp: Float = 18f,
+        labelSizeSp: Float = 16f,
         onChanged: (Boolean) -> Unit,
     ): SwitchRowResult {
         val row = LinearLayout(context).apply {
@@ -119,7 +119,7 @@ object SettingsWidgets {
             this.contentDescription = contentDescription
             isEnabled = enabled
             applyLargeSwitchStyle(this, theme.accent, theme.textSecondary, theme.accentTrack, theme.trackOff)
-            if (!theme.isOverlay) minHeight = theme.dp(context, 56)
+            if (!theme.isOverlay) minHeight = theme.dp(context, 48)
             setOnCheckedChangeListener { _, isChecked -> onChanged(isChecked) }
         }
 
@@ -145,7 +145,7 @@ object SettingsWidgets {
             }
             val descView = TextView(context).apply {
                 text = description
-                textSize = 14f
+                textSize = 13f
                 setTextColor(theme.textSecondary)
                 setPadding(0, theme.dp(context, 6), theme.dp(context, 16), 0)
                 applyTextStyle(context, theme)
@@ -195,7 +195,7 @@ object SettingsWidgets {
         }
         val labelView = TextView(context).apply {
             text = label
-            textSize = 18f
+            textSize = 16f
             setTextColor(if (theme.isOverlay) theme.textSecondary else theme.textPrimary)
             applyTextStyle(context, theme, bold = !theme.isOverlay)
         }
@@ -215,7 +215,7 @@ object SettingsWidgets {
             val button = RadioButton(context).apply {
                 id = View.generateViewId()
                 this.text = text
-                textSize = 17f
+                textSize = 16f
                 setTextColor(theme.textSecondary)
                 buttonTintList = ColorStateList(
                     arrayOf(intArrayOf(android.R.attr.state_checked), intArrayOf()),
@@ -274,14 +274,14 @@ object SettingsWidgets {
         }
         val label = TextView(context).apply {
             text = context.getString(R.string.resolution)
-            textSize = 20f
+            textSize = 17f
             setTextColor(if (theme.isOverlay) theme.textSecondary else theme.textPrimary)
             applyTextStyle(context, theme, bold = !theme.isOverlay)
         }
         header.addView(label, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f))
         val valueTextView = TextView(context).apply {
             text = "$initial%"
-            textSize = 28f
+            textSize = 22f
             setTextColor(theme.accent)
             applyTextStyle(context, theme, bold = true)
         }

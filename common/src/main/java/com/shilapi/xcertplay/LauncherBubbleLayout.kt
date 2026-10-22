@@ -11,7 +11,7 @@ internal object LauncherBubbleLayout {
 
     /** Bubble height as a share of the screen height; the width follows the icon's own ratio. */
     val sizePercents: List<Int> = listOf(8, 10, 12, 16)
-    const val DEFAULT_SIZE_PERCENT = 10
+    const val DEFAULT_SIZE_PERCENT = 8
 
     /** Keeps the bubble clear of the screen edge. */
     const val MARGIN_DP = 24

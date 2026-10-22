@@ -71,12 +71,12 @@ class DiLink3ClusterRouteSettingsTest {
         assertFalse(hasText(R.string.setup_cluster_route_conflict))
     }
 
-    @Test fun diLink4KeepsBothSwitches() {
+    @Test fun diLink4OffersNeitherAdbSwitch() {
         DiLinkGeneration.save(activity, DiLinkGeneration.DILINK_4)
         renderAdvanced()
 
-        assertTrue(hasText(R.string.platform21_cluster_mode))
-        assertTrue(hasText(R.string.adb_cluster_activity_mode))
+        assertFalse(hasText(R.string.platform21_cluster_mode))
+        assertFalse(hasText(R.string.adb_cluster_activity_mode))
         assertFalse(hasText(R.string.setup_cluster_route_conflict))
     }
 
