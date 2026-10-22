@@ -18,8 +18,8 @@ android {
         applicationId = "com.avatr.diplay"
         minSdk = 24
         targetSdk = 37
-        versionCode = 40
-        versionName = "0.2.24-avatr"
+        versionCode = 41
+        versionName = "0.2.25-avatr"
 
     }
 
